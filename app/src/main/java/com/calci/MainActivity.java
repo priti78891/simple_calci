@@ -1,67 +1,40 @@
 package com.calci;
 
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
-    TextView result;
-    EditText number1,number2;
-    Button add,subtract,multiply,divide;
 
-    float res;
-    int n1,n2;
+public class MainActivity extends AppCompatActivity {
+    Button b1;
+    EditText p1;
+    String userStr;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        result=(TextView)findViewById(R.id.result);
-        number1=(EditText)findViewById(R.id.number1);
-        number2=(EditText)findViewById(R.id.number2);
-        add=(Button)findViewById(R.id.add);
-        subtract=(Button)findViewById(R.id.subtract);
-        multiply=(Button)findViewById(R.id.multiply);
-        divide=(Button)findViewById((R.id.divide));
 
-        add.setOnClickListener(new View.OnClickListener() {
+        b1 = (Button) findViewById(R.id.b1);
+        p1=(EditText)findViewById(R.id.p1);
+
+        b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                n1=Integer.parseInt(number1.getText().toString());
-                n2=Integer.parseInt(number2.getText().toString());
-                res=n1+n2;
-                result.setText(String.valueOf(res));
+
+                userStr=p1.getText().toString();
+
+                Intent intent = new Intent(MainActivity.this, MainActivity2.class);
+                intent.putExtra("USERNAME",userStr);
+                startActivity(intent);
+
             }
         });
-        subtract.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                n1=Integer.parseInt(number1.getText().toString());
-                n2=Integer.parseInt(number2.getText().toString());
-                res=n1-n2;
-                result.setText(String.valueOf(res));
-            }
-        });
-        multiply.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                n1=Integer.parseInt(number1.getText().toString());
-                n2=Integer.parseInt(number2.getText().toString());
-                res=n1*n2;
-                result.setText(String.valueOf(res));
-            }
-        });
-        divide.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                n1=Integer.parseInt(number1.getText().toString());
-                n2=Integer.parseInt(number2.getText().toString());
-                res=n1/n2;
-                result.setText(String.valueOf(res));
-            }
-        });
+
     }
 }
